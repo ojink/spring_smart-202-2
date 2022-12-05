@@ -1,0 +1,27 @@
+1. 클래스를 Controller 라는 이름으로 만든다
+2. @Controller 를 지정한다
+3. 요청에 대한 처리:
+   메소드 선언 -> 메소드에 @RequestMapping 선언
+                      (주소창의 요청이 뭐라고 들어왔을때 이 메소드를 실행하도록 연결할 것인지)
+	        -> 메소드 내부에서는 비지니스 로직 처리를 선언
+	        -> 화면응답
+	           return "화면명" : WEB-INF/view/화면명.jsp
+	           
+개발자가 직접 객체를 생성하고 메소드를 호출하던 처리를 스프링이 한다.
+객체생성의 주체가 스프링이 된다. IoC(Inversion of Control:제어의반전)
+- 스프링 IoC는 스프링에게 제어를 위임해서 스프링이 객체를 만들고 관리하는 구조
+
+화면연결 형태
+1. Model을 사용해 화면연결
+	Model 는 파라미터로 선언한 후 
+	해당 변수에 화면에 출력할 정보를 담고, addAttribute()
+	응답화면명을 return 한다.
+2. ModelAndView 를 사용해 화면연결
+	ModelAndView 객체 생성
+	생성한 객체에 화면에 출력할 정보를 담고 addObject()
+	응답화면명을 지정 setViewName()
+	생성한 객체를 return 한다
+
+
+
+
