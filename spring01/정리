@@ -23,5 +23,22 @@
 	생성한 객체를 return 한다
 
 
+파라미터 접근 방법
+1. HttpServletRequest 객체의 getParameter() 로 파라미터를 접근
+2. @RequestParam 을 사용해 파라미터를 접근
+3. 데이터객체(DTO,VO,Domain) 을 사용해 파라미터를 접근
+
+파라미터는 아니고 특정 값 한 두개 정도를 경로의 형태로 전달하고자 할때
+@PathVariable 을 사용해 경로에 해당하는 값을 접근
+
+
+
+
+
+
+
+
+
+
 
 

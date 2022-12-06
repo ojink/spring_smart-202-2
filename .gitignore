@@ -1,3 +1,4 @@
 .metadata
 Servers/
 spring01/target/
+*.txt
