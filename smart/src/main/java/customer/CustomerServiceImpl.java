@@ -2,13 +2,11 @@ package customer;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("customer")
 public class CustomerServiceImpl implements CustomerService {
-	//@Autowired 
+	//@Autowired private CustomerDAO dao; 
 	private CustomerDAO dao;
 	public CustomerServiceImpl(CustomerDAO dao) {
 		this.dao = dao;
@@ -23,13 +21,11 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public List<CustomerVO> customer_list() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.customer_list();
 	}
 
 	@Override
 	public CustomerVO customer_info(int id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
