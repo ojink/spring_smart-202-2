@@ -19,7 +19,7 @@ header nav li a.active, header nav li a:hover { color: #0040ff; font-weight: bol
 <nav>
 	<ul>
 		<li><a href='list.cu' ${category eq 'cu' ? 'class="active"' : ''}>고객관리</a></li>
-		<li><a>사원관리</a></li>
+		<li><a href='list.hr' ${category eq 'hr' ? 'class="active"' : ''}>사원관리</a></li>
 		<li><a>공지사항</a></li>
 		<li><a>방명록</a></li>
 		<li><a>공공데이터</a></li>

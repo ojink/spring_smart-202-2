@@ -21,6 +21,17 @@ public class CustomerController {
 	}
 	//Command 패턴 -> Service
 	
+	//신규고객정보 저장처리 요청
+	@RequestMapping("/insert.cu")
+	public String insert(CustomerVO vo) {
+		//비지니스로직
+		//화면에서 입력한 정보를 DB에 신규저장처리한 후
+		service.customer_insert(vo);
+		//응답화면연결
+		return "redirect:list.cu";
+	}
+	
+	
 	//신규고객정보 등록화면 요청
 	@RequestMapping("/new.cu")
 	public String customer() {

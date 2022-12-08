@@ -10,7 +10,6 @@
 <jsp:include page="/WEB-INF/views/include/header.jsp"/>
 <h3>신규고객등록</h3>
 <form method='post' action='insert.cu'>
-<input type='hidden' name='id'>
 <table class='w-px600'>
 <tr><th class='w-px140'>고객명</th>
 	<td><input type='text' name='name'></td>
