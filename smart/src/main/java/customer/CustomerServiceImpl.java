@@ -31,6 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void customer_update(CustomerVO vo) {
+		dao.customer_update(vo);
 	}
 
 	@Override

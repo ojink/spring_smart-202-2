@@ -31,6 +31,7 @@ public class CustomerDAO implements CustomerService {
 
 	@Override
 	public void customer_update(CustomerVO vo) {
+		sql.update("customer.update", vo);
 	}
 
 	@Override

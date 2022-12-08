@@ -21,6 +21,16 @@ public class CustomerController {
 	}
 	//Command 패턴 -> Service
 	
+
+	//고객정보 수정저장처리 요청
+	@RequestMapping("/update.cu")
+	public String update(CustomerVO vo) {
+		//비지니스로직
+		//화면에서 입력한 정보를 DB에 변경저장한 후
+		service.customer_update(vo);
+		//응답화면연결
+		return "redirect:info.cu?id=" + vo.getId();
+	}
 	
 	
 	//고객정보 수정화면 요청
