@@ -21,7 +21,16 @@ public class CustomerController {
 	}
 	//Command 패턴 -> Service
 	
-
+	//고객정보 삭제처리 요청
+	@RequestMapping("/delete.cu")
+	public String delete(int id) {
+		//비지니스로직
+		//선택한 고객정보를 DB에서 삭제한 후
+		service.customer_delete(id);
+		//응답화면연결
+		return "redirect:list.cu";
+	}
+	
 	//고객정보 수정저장처리 요청
 	@RequestMapping("/update.cu")
 	public String update(CustomerVO vo) {

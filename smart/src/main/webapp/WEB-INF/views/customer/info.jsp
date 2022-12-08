@@ -25,10 +25,35 @@
 </table>
 <div class='btnSet'>
 	<a class='btn-fill' href='modify.cu?id=${vo.id}'>정보수정</a>
-	<a class='btn-fill'>정보삭제</a>
+	<a class='btn-fill remove'>정보삭제</a>
+<!-- 	<a class='btn-fill' onclick="fn_delete()">정보삭제</a> -->
 	<a class='btn-fill' href='list.cu'>고객목록</a>
 </div>
+<script>
+$(document).on('click', '.remove',  function(){
+	if( confirm('[${vo.name}] 정말 삭제?') ){ 
+		location='delete.cu?id=${vo.id}'; 
+	}
+});
 
+// $('.remove').on('click', function(){
+// 	if( confirm('[${vo.name}] 정말 삭제?') ){ 
+// 		location='delete.cu?id=${vo.id}'; 
+// 	}
+// });
+
+// $('.remove').click(function(){
+// 	if( confirm('[${vo.name}] 정말 삭제?') ){ 
+// 		location='delete.cu?id=${vo.id}'; 
+// 	}
+// });
+
+function fn_delete(){
+	if( confirm('[${vo.name}] 정말 삭제?') ){ 
+		location='delete.cu?id=${vo.id}'; 
+	}
+}
+</script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>
 </html>
