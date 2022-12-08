@@ -13,6 +13,8 @@ header nav ul { font-size: 18px; font-weight: bold; }
 header nav ul li:not(:first-child) { margin-left: 50px; }
 header nav li a.active, header nav li a:hover { color: #0040ff; font-weight: bold; }
 </style> 
+<script type="text/javascript" 
+		src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <header>
 <nav>
 	<ul>

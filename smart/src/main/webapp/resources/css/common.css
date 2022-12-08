@@ -41,6 +41,18 @@ a.btn-empty {
 	color: #3367d6;
 }
 
+input {
+	height: 30px;
+	padding: 0 10px;
+	font-size: 16px; 
+}
+input[type=radio]{
+	width: 18px;
+	margin: 0 5px 2px;
+	vertical-align: middle;
+}
+input:focus { outline: none; border: 1px solid #3367d6; }
+
 .box {
 	width: 300px;
 	margin: 20px auto;

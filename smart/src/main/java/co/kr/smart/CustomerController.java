@@ -22,6 +22,19 @@ public class CustomerController {
 	//Command 패턴 -> Service
 	
 	
+	
+	//고객정보 수정화면 요청
+	@RequestMapping("/modify.cu")
+	public String modify(int id, Model model) {
+		//비지니스로직
+		//선택한 고객정보를 DB에서 조회해와
+		CustomerVO vo = service.customer_info(id);		
+		//수정화면에 출력할 수 있도록 Model에 attribute로 담는다
+		model.addAttribute("vo", vo);
+		//응답화면연결
+		return "customer/modify";
+	}
+	
 	//고객정보화면 요청
 	@RequestMapping("/info.cu")
 	public String info(int id, Model model) {

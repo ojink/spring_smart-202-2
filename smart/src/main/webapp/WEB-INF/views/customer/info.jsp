@@ -28,6 +28,7 @@
 	<a class='btn-fill'>정보삭제</a>
 	<a class='btn-fill' href='list.cu'>고객목록</a>
 </div>
+
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>
 </html>
