@@ -21,6 +21,13 @@ public class CustomerController {
 	}
 	//Command 패턴 -> Service
 	
+	//신규고객정보 등록화면 요청
+	@RequestMapping("/new.cu")
+	public String customer() {
+		//응답화면연결
+		return "customer/new";
+	}
+	
 	//고객정보 삭제처리 요청
 	@RequestMapping("/delete.cu")
 	public String delete(int id) {

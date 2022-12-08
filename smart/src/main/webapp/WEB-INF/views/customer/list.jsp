@@ -25,8 +25,10 @@
 	<td>${vo.email}</td>
 </tr>
 </c:forEach>
-
 </table>
+<div class='btnSet'>
+	<a class='btn-fill' href='new.cu'>고객등록</a>
+</div>
 
 
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
