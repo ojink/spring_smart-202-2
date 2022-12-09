@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link href='css/common.css?<%=new java.util.Date() %>' rel="stylesheet" type="text/css">
 <style>
 header {
 	border-bottom: 1px solid #aaa;
@@ -13,11 +12,10 @@ header nav ul { font-size: 18px; font-weight: bold; }
 header nav ul li:not(:first-child) { margin-left: 50px; }
 header nav li a.active, header nav li a:hover { color: #0040ff; font-weight: bold; }
 </style> 
-<script type="text/javascript" 
-		src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <header>
 <nav>
 	<ul>
+		<li><a href='<c:url value="/"/>'><img src='img/hanul.logo.png'></a></li>
 		<li><a href='list.cu' ${category eq 'cu' ? 'class="active"' : ''}>고객관리</a></li>
 		<li><a href='list.hr' ${category eq 'hr' ? 'class="active"' : ''}>사원관리</a></li>
 		<li><a>공지사항</a></li>

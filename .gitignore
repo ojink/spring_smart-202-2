@@ -1,4 +1,6 @@
 .metadata
 Servers/
 spring01/target/
+spring02/target/
+smart/target/
 *.txt

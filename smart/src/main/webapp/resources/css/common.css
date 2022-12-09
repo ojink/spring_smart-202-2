@@ -61,6 +61,12 @@ label:not(:first-child) { margin-left: 20px; }
 	padding: 30px 50px;	
 }
 
+.tb-wrap {
+	overflow-y: auto;  height: 495px;
+	margin: 0 auto; 
+}
+.tb-wrap .tb-list { width: 100%; }
+
 .box li { margin: 10px 0; }
 .box input { width: 100%; }
 

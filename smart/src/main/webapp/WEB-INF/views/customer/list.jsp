@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/header.jsp"/>
 <h3>고객목록</h3>
 <table class='tb-list w-px600'>
 <colgroup>
@@ -31,6 +30,5 @@
 </div>
 
 
-<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>
 </html>

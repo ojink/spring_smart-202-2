@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/header.jsp"/>
 <h3>고객정보</h3>
 <table class='w-px600'>
 <tr><th>고객명</th>
@@ -54,6 +53,5 @@ function fn_delete(){
 	}
 }
 </script>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>
 </html>

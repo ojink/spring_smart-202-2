@@ -1,6 +1,6 @@
 package co.kr.smart;
 
-import java.util.Locale;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,12 +14,15 @@ public class HomeController {
 	//org.apache.commons.dbcp2.BasicDataSource
 	//org.mybatis.spring.SqlSessionFactoryBean
 	//org.mybatis.spring.SqlSessionTemplate
+	//org.springframework.web.servlet.view.tiles3.TilesViewResolver
+	//org.springframework.web.servlet.view.tiles3.TilesConfigurer
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		
+	public String home(HttpSession session, Model model) {
+		//session.setAttribute("category", "");
+		session.removeAttribute("category");
 		return "home";
 	}
 	
