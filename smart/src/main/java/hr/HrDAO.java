@@ -27,8 +27,7 @@ public class HrDAO implements HrService {
 
 	@Override
 	public EmployeeVO employee_info(int employee_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return sql.selectOne("hr.info", employee_id);
 	}
 
 	@Override
@@ -39,8 +38,6 @@ public class HrDAO implements HrService {
 
 	@Override
 	public void employee_delete(int employee_id) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

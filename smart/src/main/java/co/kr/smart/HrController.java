@@ -19,6 +19,16 @@ public class HrController {
 		this.service = hr;
 	}
 
+
+	//사원정보화면 요청
+	@RequestMapping("/info.hr")
+	public String info(int id, Model model) {
+		//비지니스로직-DB에서 선택한 사원정보를 조회해온다. -> 사원정보화면에 출력할 수 있도록 Model에 attribute로 담는다
+		model.addAttribute("vo", service.employee_info(id));
+		//응답화면연결
+		return "employee/info";
+	}
+	
 	//사원목록화면 요청
 	@RequestMapping("/list.hr")
 	public String list(HttpSession session, Model model) {

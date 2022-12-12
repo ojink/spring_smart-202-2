@@ -26,8 +26,7 @@ public class HrServiceImpl implements HrService {
 
 	@Override
 	public EmployeeVO employee_info(int employee_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.employee_info(employee_id);
 	}
 
 	@Override
@@ -38,8 +37,6 @@ public class HrServiceImpl implements HrService {
 
 	@Override
 	public void employee_delete(int employee_id) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

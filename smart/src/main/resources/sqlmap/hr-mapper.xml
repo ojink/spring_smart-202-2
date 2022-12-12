@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hr">
+
+
+<!-- 사원정보조회 -->
+<select id='info' resultType='hr.EmployeeVO'>
+select e.*, last_name || ' '|| first_name name, department_name, job_title 
+from employees e left outer join departments d on e.department_id=d.department_id
+inner join jobs j on j.job_id=e.job_id 
+where employee_id = #{employee_id}
+</select>
+
 <!-- 사원목록조회 -->
 <select id='list' resultType='hr.EmployeeVO'>
 select * from employees order by employee_id
 </select>
+
 </mapper>
+

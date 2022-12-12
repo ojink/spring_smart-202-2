@@ -25,7 +25,7 @@
 </tr>
 <c:forEach items='${list}' var='vo'>
 <tr><td>${vo.employee_id }</td>
-	<td>${vo.last_name } ${vo.first_name }</td>
+	<td><a href='info.hr?id=${vo.employee_id}'>${vo.last_name } ${vo.first_name }</a></td>
 	<td>${vo.department_id }</td>
 	<td>${vo.job_id }</td>
 	<td>${vo.hire_date }</td>
