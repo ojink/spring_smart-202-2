@@ -2,6 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hr">
 
+<!-- 회사 부서목록 -->
+<select id='department_list' resultType='hr.DepartmentVO'>
+select * from departments order by department_name
+</select>
+<!-- 회사 업무목록 -->
+<select id='job_list' resultType='hr.JobVO'>
+select * from jobs order by job_title
+</select>
+
+<!-- 사원정보변경저장 -->
+<update id="update">
+update employees 
+set last_name = #{last_name}, first_name = #{first_name}, email = #{email}
+	, phone_number = #{phone_number}, job_id = #{job_id}
+	, salary = #{salary}, hire_date = #{hire_date}
+	, department_id = 
+		<if test='department_id==-1'>null</if>
+		<if test='department_id!=-1'>#{department_id}</if>		 
+where employee_id = #{employee_id}
+</update>
+
+
 <!-- 사원정보삭제 -->
 <delete id="delete">
 delete from employees where employee_id = #{employee_id}

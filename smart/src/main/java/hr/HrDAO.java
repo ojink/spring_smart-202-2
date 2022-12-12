@@ -32,13 +32,22 @@ public class HrDAO implements HrService {
 
 	@Override
 	public void employee_update(EmployeeVO vo) {
-		// TODO Auto-generated method stub
-
+		sql.update("hr.update", vo);
 	}
 
 	@Override
 	public void employee_delete(int employee_id) {
 		sql.delete("hr.delete", employee_id);
+	}
+
+	@Override
+	public List<DepartmentVO> hr_department_list() {
+		return sql.selectList("hr.department_list");
+	}
+
+	@Override
+	public List<JobVO> hr_job_list() {
+		return sql.selectList("hr.job_list");
 	}
 
 }
