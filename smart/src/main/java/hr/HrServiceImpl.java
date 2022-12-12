@@ -15,8 +15,7 @@ public class HrServiceImpl implements HrService {
 	
 	@Override
 	public void employee_insert(EmployeeVO vo) {
-		// TODO Auto-generated method stub
-
+		dao.employee_insert(vo);
 	}
 
 	@Override

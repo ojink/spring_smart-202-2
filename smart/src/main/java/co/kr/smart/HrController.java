@@ -17,6 +17,27 @@ public class HrController {
 		this.service = hr;
 	}
 	
+	//신규사원등록 처리 요청
+	@RequestMapping("/insert.hr")
+	public String insert(EmployeeVO vo) {
+		//비지니스로직-화면에서 입력한 정보를 DB에 신규저장한다
+		service.employee_insert(vo);
+		//응답화면연결
+		return "redirect:list.hr";
+	}
+	
+	
+	//신규사원등록 화면 요청
+	@RequestMapping("/new.hr")
+	public String employee(Model model) {
+		//부서목록, 업무목록을 조회한다
+		model.addAttribute("departments", service.hr_department_list() );
+		model.addAttribute("jobs", service.hr_job_list());
+				
+		return "employee/new";
+	}
+	
+	
 	//사원정보 수정저장처리 요청
 	@RequestMapping ("/update.hr")
 	public String update(EmployeeVO vo) {

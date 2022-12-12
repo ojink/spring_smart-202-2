@@ -11,6 +11,17 @@ select * from departments order by department_name
 select * from jobs order by job_title
 </select>
 
+<!-- 사원정보 신규저장 -->
+<insert id="insert">
+insert into employees 
+(employee_id, last_name, first_name, email, phone_number, job_id, salary, hire_date, department_id)
+values (employees_seq.nextval, #{last_name}, #{first_name}, #{email}, #{phone_number}, #{job_id}, #{salary}
+		, #{hire_date}, 
+		<if test='department_id==-1'>null</if>
+		<if test='department_id!=-1'>#{department_id}</if> 
+	   )
+</insert>
+
 <!-- 사원정보변경저장 -->
 <update id="update">
 update employees 

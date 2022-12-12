@@ -8,6 +8,11 @@
 </head>
 <body>
 <h3>사원목록</h3>
+<div id='list-top'>
+<ul>
+	<li><a class='btn-fill' href='new.hr'>신규사원등록</a></li>
+</ul>
+</div>
 <div class='tb-wrap w-px1000'>
 <table class='tb-list'>
 <colgroup>

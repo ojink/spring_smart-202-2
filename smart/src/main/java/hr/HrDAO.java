@@ -16,8 +16,7 @@ public class HrDAO implements HrService {
 	
 	@Override
 	public void employee_insert(EmployeeVO vo) {
-		// TODO Auto-generated method stub
-
+		sql.insert("hr.insert", vo);
 	}
 
 	@Override
