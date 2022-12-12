@@ -18,7 +18,16 @@ public class HrController {
 	public HrController(HrService hr) {
 		this.service = hr;
 	}
-
+	
+	//사원정보삭제처리 요청
+	@RequestMapping("/delete.hr")
+	public String delete(int id) {
+		//비지니스로직 - 선택한 사원정보를 DB에서 삭제한다
+		service.employee_delete(id);
+		//응답화면연결
+		return "redirect:list.hr";
+	}
+	
 
 	//사원정보화면 요청
 	@RequestMapping("/info.hr")

@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hr">
 
+<!-- 사원정보삭제 -->
+<delete id="delete">
+delete from employees where employee_id = #{employee_id}
+</delete>
 
 <!-- 사원정보조회 -->
 <select id='info' resultType='hr.EmployeeVO'>

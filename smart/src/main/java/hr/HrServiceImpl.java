@@ -37,6 +37,7 @@ public class HrServiceImpl implements HrService {
 
 	@Override
 	public void employee_delete(int employee_id) {
+		dao.employee_delete(employee_id);
 	}
 
 }

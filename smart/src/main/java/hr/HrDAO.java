@@ -38,6 +38,7 @@ public class HrDAO implements HrService {
 
 	@Override
 	public void employee_delete(int employee_id) {
+		sql.delete("hr.delete", employee_id);
 	}
 
 }
