@@ -18,7 +18,7 @@ header nav li a.active, header nav li a:hover { color: #0040ff; font-weight: bol
 		<li><a href='<c:url value="/"/>'><img src='img/hanul.logo.png'></a></li>
 		<li><a href='list.cu' ${category eq 'cu' ? 'class="active"' : ''}>고객관리</a></li>
 		<li><a href='list.hr' ${category eq 'hr' ? 'class="active"' : ''}>사원관리</a></li>
-		<li><a>공지사항</a></li>
+		<li><a href='list.no' ${category eq 'no' ? 'class="active"' : ''}>공지사항</a></li>
 		<li><a>방명록</a></li>
 		<li><a>공공데이터</a></li>
 		<li><a>시각화</a></li>
