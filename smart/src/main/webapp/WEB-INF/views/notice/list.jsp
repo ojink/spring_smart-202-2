@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3>공지사항</h3>
-<div id='list-top'>
+<div id='list-top' class='w-px1200'>
 <ul>
 	<li><a class='btn-fill' href='new.no'>글쓰기</a></li>
 </ul>
