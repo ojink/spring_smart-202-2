@@ -1,6 +1,7 @@
 package member;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,14 +40,18 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int member_myInfo_update(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.member_myInfo_update(vo);
 	}
 
 	@Override
 	public int member_delete(String userid) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<MemberVO> member_list() {
+		return dao.member_list();
 	}
 
 }

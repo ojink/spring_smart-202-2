@@ -1,6 +1,7 @@
 package member;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,14 +41,18 @@ public class MemberDAO implements MemberService {
 
 	@Override
 	public int member_myInfo_update(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sql.update("member.myInfo_update", vo);
 	}
 
 	@Override
 	public int member_delete(String userid) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<MemberVO> member_list() {
+		return sql.selectList("member.list");
 	}
 
 }
