@@ -54,4 +54,14 @@ public class MemberServiceImpl implements MemberService {
 		return dao.member_list();
 	}
 
+	@Override
+	public String member_salt(String userid) {
+		return dao.member_salt(userid);
+	}
+
+	@Override
+	public String member_userid_email(MemberVO vo) {
+		return dao.member_userid_email(vo);
+	}
+
 }

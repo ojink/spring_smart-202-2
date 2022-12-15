@@ -55,4 +55,14 @@ public class MemberDAO implements MemberService {
 		return sql.selectList("member.list");
 	}
 
+	@Override
+	public String member_salt(String userid) {
+		return sql.selectOne("member.salt", userid);
+	}
+
+	@Override
+	public String member_userid_email(MemberVO vo) {
+		return sql.selectOne("member.userid_email", vo);
+	}
+
 }

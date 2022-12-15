@@ -31,6 +31,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session, Model model) {
+		/*
 		//암호화하지 않은 비번에 대해 암호화해서 저장하는 처리 ------
 		List<MemberVO> list = member.member_list();
 		for(MemberVO vo : list ) {
@@ -44,7 +45,7 @@ public class HomeController {
 			}
 		}
 		//-----------------------------------------------
-		
+		*/
 		
 		//session.setAttribute("category", "");
 		session.removeAttribute("category");

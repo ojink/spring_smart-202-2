@@ -2,6 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
+<!-- 아이디/이메일 일치하는 회원명 조회 -->
+<select id='userid_email' resultType='string'>
+select name from member where userid = #{userid} and email = #{email}
+</select>
+
+<!-- 회원의 salt 조회 -->
+<select id="salt" resultType='string'>
+select salt from member where userid = #{userid}
+</select>
+
 <!-- 회원정보변경: 내정보수정 -->
 <update id="myInfo_update">
 update member 

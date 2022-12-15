@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class='center'>
+	<a href='<c:url value="/"/>'><img src='img/hanul.logo.png'></a>
 	<div class='box'>
 	<ul>
 		<li><input type='text' id='userid' class='chk' placeholder="아이디"></li>	
@@ -15,6 +16,7 @@
 		<li><input type='button' value='로그인' class='login'></li>	
 	</ul>
 	</div>
+	<div><a href='find'>비밀번호찾기</a></div>
 </div>
 <script>
 $('.login').click(function(){

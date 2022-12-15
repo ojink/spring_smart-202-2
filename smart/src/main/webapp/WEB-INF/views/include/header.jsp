@@ -36,6 +36,7 @@ header div li:not(:first-child) { margin-left: 5px; }
 	<!-- 로그인한 경우 -->
 	<c:if test="${not empty loginInfo}">
 		<li><strong>${loginInfo.name}</strong></li>
+		<li><a class='btn-fill' >비밀번호변경</a></li>
 		<li><a class='btn-fill' href='logout'>로그아웃</a></li>
 	</c:if>
 	</ul>
