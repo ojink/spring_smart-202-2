@@ -33,6 +33,12 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	//비밀번호 변경 화면 요청
+	@RequestMapping("/changePW")
+	public String changePw() {
+		return "member/change";				
+	}
+	
 	//비밀번호 재발급처리 요청
 	@ResponseBody @RequestMapping(value="/reset", produces="text/html; charset=utf-8" )
 	public String reset(MemberVO vo) {

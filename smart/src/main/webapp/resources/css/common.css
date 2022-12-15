@@ -91,7 +91,12 @@ label:not(:first-child) { margin-left: 20px; }
 }
 #list-top ul { display: flex; }
 
+div.valid { color: #008000; font-size: 14px; font-weight: bold; }
+div.invalid { color: #ff0000; font-size: 14px; font-weight: bold; }
 
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
 
 .w-pct80 { width:80% }
 .w-pct60 { width:60% }
