@@ -20,20 +20,27 @@ var member = {
 	
 	//비밀번호관련 상태값
 	userpw: {
+		invalid: { code:'invalid', desc:'영문 대/소문자,숫자만 입력' },
 		valid: { code:'valid', desc:'사용가능한 비밀번호' },
 		equal: { code:'valid', desc:'비밀번호가 일치합니다' },
 		notEqual: { code:'invalid', desc:'비밀번호가 불일치' },
+		lack: { code:'invalid', desc:'영문 대/소문자,숫자를 모두 포함해야함' },
 	},
 	
 	space: /\s/g,
 	
-	//비밀번호의 입력상태 확인
+	//비밀번호의 입력상태 확인: 영문 대/소문자, 숫자를 모두 포함하게
 	userpw_status: function( pw ){
+		var reg = /[^a-zA-Z0-9]/g, upper= /[A-Z]/g, lower=/[a-z]/g, digit=/[0-9]/g;
+		
 		if( pw=='' )  					return this.common.empty;
 		else if( pw.match(this.space) )	return this.common.space;
+		else if( reg.test(pw) )			return this.userpw.invalid;
 		else if( pw.length < 5 )		return this.common.min;
 		else if( pw.length > 10 )		return this.common.max;
-		else							return this.userpw.valid;
+		else if( !upper.test(pw) || !lower.test(pw) || !digit.test(pw) )
+										return this.userpw.lack;
+		else							return this.userpw.valid;		
 	},
 	//비밀번호 확인의 입력상태 확인
 	userpw_ck_status: function( pw_ck ){

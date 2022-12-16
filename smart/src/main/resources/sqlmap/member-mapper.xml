@@ -12,12 +12,42 @@ select name from member where userid = #{userid} and email = #{email}
 select salt from member where userid = #{userid}
 </select>
 
+<!-- 회원아이디 중복확인(존재유무)-->
+<select id='idCheck' resultType='integer'>
+select count(*) from member where userid = #{userid}
+</select>
+
+<!-- 회원정보저장:회원가입,소셜로그인신규 -->
+<insert id='join'>
+<!-- private String userid, userpw, name, gender, email, phone -->
+<!-- 				, post, address, admin, social, profile, birth, salt; -->
+insert into member 
+	(userid, userpw, name, gender, email, phone, post
+	, address, social, profile, birth, salt)
+values ( #{userid}, #{userpw, jdbcType=VARCHAR}, #{name}, #{gender}
+, #{email, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}
+, #{post, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}
+, #{social, jdbcType=VARCHAR}, #{profile, jdbcType=VARCHAR}
+, #{birth, jdbcType=VARCHAR}, #{salt, jdbcType=VARCHAR} )	
+</insert>
+
 <!-- 회원정보변경: 내정보수정 -->
 <update id="myInfo_update">
+<!-- //nickname, name, email, gender(- F: 여성,- M: 남성,- U: 확인불가), profile_image, mobile -->		
+update member 
+set salt = #{salt, jdbcType=VARCHAR}, userpw = #{userpw, jdbcType=VARCHAR}
+	, name = #{name, jdbcType=VARCHAR}, email = #{email, jdbcType=VARCHAR}
+	, gender = #{gender}, profile = #{profile, jdbcType=VARCHAR}
+	, phone = #{phone, jdbcType=VARCHAR}, social = #{social, jdbcType=VARCHAR} 
+where userid = #{userid}
+</update>
+<!-- 비밀번호변경: 임시비번발급시, 비밀번호변경시 -->
+<update id="password_update">
 update member 
 set salt = #{salt}, userpw = #{userpw} 
 where userid = #{userid}
 </update>
+
 
 <!-- 회원목록조회[관리자] -->
 <select id='list' resultType='member.MemberVO'>

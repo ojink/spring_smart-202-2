@@ -18,6 +18,8 @@ table td { padding-left: 10px }
 table th { background-color: #f6f6f6; }
 table a:hover { font-weight: bold; text-decoration: underline; }
 
+.profile { width:50px; height: 50px; border-radius: 50%; }
+.font-profile { font-size: 50px; }
 select {
 	height: 34px;
 	cursor: pointer;
@@ -29,7 +31,7 @@ div.btnSet { margin: 20px auto; }
 a.btn-fill, a.btn-empty {
 	display: inline-block;
 	height: 24px;
-	padding: 3px 15px;
+	padding: 3px 10px;
 	border: 1px solid #3367d6;
 	border-radius: 3px;
 }

@@ -16,10 +16,13 @@
 <title>스마트 웹&amp;앱 ${title}</title>
 <link rel='icon' type='image/x-icon' href='img/hanul.ico'>
 <link href='css/common.css?<%=new java.util.Date() %>' rel="stylesheet" type="text/css">
+<link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"  />
 
 <script type="text/javascript" 
 		src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src='js/common.js?<%=new java.util.Date() %>'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"></script>
 </head>
 <body>
 <tiles:insertAttribute name="header" />

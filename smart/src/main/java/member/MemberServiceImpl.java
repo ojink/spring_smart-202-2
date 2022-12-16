@@ -17,8 +17,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int member_join(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.member_join(vo);
 	}
 
 	@Override
@@ -34,8 +33,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int member_idCheck(String userid) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.member_idCheck(userid);
 	}
 
 	@Override
@@ -62,6 +60,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String member_userid_email(MemberVO vo) {
 		return dao.member_userid_email(vo);
+	}
+
+	@Override
+	public int member_password_update(MemberVO vo) {
+		return dao.member_password_update(vo);
 	}
 
 }

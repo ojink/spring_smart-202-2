@@ -41,7 +41,7 @@ public class HomeController {
 				String pw = common.getEncrypt(salt, vo.getUserpw());
 				vo.setSalt(salt);
 				vo.setUserpw(pw);
-				member.member_myInfo_update(vo);
+				member.member_password_update(vo);
 			}
 		}
 		//-----------------------------------------------
