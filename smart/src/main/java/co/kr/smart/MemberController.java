@@ -50,6 +50,14 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	//아이디 중복확인 요청
+	@ResponseBody @RequestMapping("/idCheck")
+	public boolean idcheck(String id) {
+		//비지니스로직-화면에서 입력한 아이디가 DB에 존재하는지 확인: 0 아이디 존재X, 1 아이디 존재
+		return member.member_idCheck(id)==0 ? false: true ;
+	}
+	
+	
 	//비밀번호 변경 화면 요청
 	@RequestMapping("/changePW")
 	public String changePw(HttpSession session) {
