@@ -52,7 +52,8 @@ public class MemberController {
 	
 	//비밀번호 변경 화면 요청
 	@RequestMapping("/changePW")
-	public String changePw() {
+	public String changePw(HttpSession session) {
+		session.setAttribute("category", "change");
 		return "member/change";				
 	}
 	
@@ -94,9 +95,18 @@ public class MemberController {
 	
 	//비밀번호찾기 화면 요청 - 비밀번호재발급(임시비번발급) 화면
 	@RequestMapping("/find")
-	public String find() {
+	public String find(HttpSession session) {
+		session.setAttribute("category", "find");
 		return "default/member/find";
 	}
+	
+	//회원가입화면 요청
+	@RequestMapping("/member")
+	public String member(HttpSession session) {
+		session.setAttribute("category", "join");
+		return "member/join";
+	}
+	
 	
 	private String NaverClientId = "mqIOjOK1HE2OJbrNFrnA";
 	private String NaverClientSecret = "j9CPsKwuik";

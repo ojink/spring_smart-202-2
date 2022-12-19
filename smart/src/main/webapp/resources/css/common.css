@@ -18,6 +18,7 @@ table td { padding-left: 10px }
 table th { background-color: #f6f6f6; }
 table a:hover { font-weight: bold; text-decoration: underline; }
 
+.full { width: calc(100% - 30px) }
 .profile { width:50px; height: 50px; border-radius: 50%; }
 .font-profile { font-size: 50px; }
 select {

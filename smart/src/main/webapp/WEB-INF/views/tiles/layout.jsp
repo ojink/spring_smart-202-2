@@ -12,6 +12,7 @@
 	<c:when test="${category eq 'bo'}"><c:set var='title' value='방명록'/></c:when>
 	<c:when test="${category eq 'da'}"><c:set var='title' value='공공데이터'/></c:when>
 	<c:when test="${category eq 'vi'}"><c:set var='title' value='시각화'/></c:when>
+	<c:when test="${category eq 'join'}"><c:set var='title' value='회원가입'/></c:when>
 </c:choose>
 <title>스마트 웹&amp;앱 ${title}</title>
 <link rel='icon' type='image/x-icon' href='img/hanul.ico'>
