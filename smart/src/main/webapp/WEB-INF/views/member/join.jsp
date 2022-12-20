@@ -18,7 +18,11 @@ form span { color: #ff0000; margin-right:5px }
 <h3>회원가입</h3>
 
 <p>*는 필수입력항목입니다</p>
-<form method='post' action='join'>
+<!-- 파일업로드하기위한 form태그의 주의사항 
+1. form 의 method는 반드시 post
+2. 파일을 첨부해서 보낸다는 지정: enctype='multipart/form-data'
+-->
+<form method='post' action='join' enctype='multipart/form-data'>
 <table class='w-px600'>
 <tr><th class='w-px140'><span>*</span>성명</th>
 	<td><input type='text' name='name' autofocus></td>
@@ -77,10 +81,62 @@ form span { color: #ff0000; margin-right:5px }
 </tr>
 </table>
 </form>
+<div class='btnSet'>
+	<a class='btn-fill join'>회원가입</a>
+	<a class='btn-empty' href='<c:url value="/"/>'>취소</a>
+</div>
+
 <script src='js/member.js?<%=new java.util.Date()%>'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+$('.join').click(function(){
+	if( $.trim($('[name=name]').val())=='' ){
+		alert('성명을 입력하세요');
+		$('[name=name]').focus();
+		$('[name=name]').val('');
+		return;
+	}
+	//유효성확인
+	//중복확인 했고 이미사용중인 경우 가입불가
+	//중복확인하지 않은경우 가입불가
+	var _userid = $('[name=userid]');
+	if( _userid.hasClass('chked') ){
+		if( _userid.siblings('div').hasClass('invalid') ){
+			alert('회원가입 불가!\n' + member.userid.unUsable.desc);
+			_userid.focus();
+			return;
+		}
+		
+	}else{
+		//유효하지 않게 입력해서 회원가입불가
+		if( tagIsInvalid( _userid ) ) return;
+		else{
+			//중복확인하지 않아서 회원가입불가			
+			alert('회원가입 불가!\n' + member.userid.valid.desc);
+			_userid.focus();
+			return;
+		}
+	}
+		
+	if( tagIsInvalid( $('[name=userpw]') ) ) return;
+	if( tagIsInvalid( $('[name=userpw_ck]') ) ) return;
+	if( tagIsInvalid( $('[name=email]') ) ) return;
+	$('form').submit();
+});
+
+//유효성확인
+function tagIsInvalid( tag ){
+	var status = member.tag_status( tag );
+	if( status.code=='invalid' ){
+		alert('회원가입 불가!\n' + status.desc);
+		tag.focus();
+		return true;
+	}else
+		return false;
+}
+
+
 //아이디 중복확인
 $('#btn-userid').click(function(){
 	idCheck(); 

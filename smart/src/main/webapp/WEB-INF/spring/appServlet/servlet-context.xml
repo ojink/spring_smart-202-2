@@ -32,6 +32,13 @@
 						value="/WEB-INF/views/tiles/config.xml"/>
 	</beans:bean>
 	
+	<!-- 파일업로드를 위한 객체 -->
+	<beans:bean id='multipartResolver' 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value='utf-8'/>
+	</beans:bean>
+	
+	
 	<context:component-scan base-package="co.kr.smart" />
 	
 	
