@@ -33,7 +33,8 @@ public class MemberController {
 	public String join(MemberVO vo, MultipartFile profile_image, HttpServletRequest request) {
 		//첨부된 프로필 파일이 있는 경우
 		if( ! profile_image.isEmpty() ) {
-			//서버의 물리적영역에 첨부파일을 저장한다
+			//서버의 물리적영역에 첨부파일을 저장한 후 DB에 저장할 수 있도록 처리한다
+			vo.setProfile( common.fileUpload("profile", profile_image, request) );
 		}
 		//화면에서 입력한 정보를 DB에 신규저장한다
 		//입력한 비번을 암호화처리
@@ -147,6 +148,71 @@ public class MemberController {
 	
 	private String NaverClientId = "mqIOjOK1HE2OJbrNFrnA";
 	private String NaverClientSecret = "j9CPsKwuik";
+	private String KakaoClientId = "7be4cdf3b472e798454972e55bd47aad";
+
+	//카카오로그인처리 요청
+	@RequestMapping("/kakaoLogin")
+	public String kakaoLogin(HttpSession session, HttpServletRequest request) {
+		String state = UUID.randomUUID().toString();
+		session.setAttribute("state", state);
+		
+		StringBuffer url = new StringBuffer(
+				"https://kauth.kakao.com/oauth/authorize?response_type=code");
+		url.append("&client_id=").append(KakaoClientId);
+		url.append("&redirect_uri=").append( common.appURL(request) ).append("/kakaocallback");
+		return "redirect:" + url.toString();
+	}
+	//카카오콜백처리
+	@RequestMapping("/kakaocallback")
+	public String kakaocallback(String code, HttpSession session) {
+		if( code != null ) {
+			//접근토큰 발급 요청
+			StringBuffer url = new StringBuffer(
+				"https://kauth.kakao.com/oauth/token?grant_type=authorization_code");
+			url.append("&client_id=").append( KakaoClientId );
+			url.append("&code=").append(code);
+			
+			String tokens = common.requestAPI( url.toString() );
+			JSONObject json = new JSONObject( tokens );
+			String token_type  = json.getString("token_type");
+			String access_token  = json.getString("access_token");
+			
+			url = new StringBuffer("https://kapi.kakao.com/v2/user/me");
+			String profile = common.requestAPI(
+					url.toString(), token_type +" "+access_token);
+			
+			json = new JSONObject( profile );
+			if( ! json.isEmpty() ) {
+				
+				MemberVO vo = new MemberVO();
+				vo.setSocial("K");
+				vo.setUserid( json.get("id").toString() ); //"id":123456789,
+				
+				json = json.getJSONObject("kakao_account");
+				vo.setName( jsonValue("name", json, "무명씨") );
+				vo.setEmail( jsonValue("email", json) );
+				// female(여) / male(남)
+				vo.setGender( jsonValue("gender", json, "F").equals("F") ? "여" : "남" );
+				vo.setPhone( jsonValue("phone_number", json) );
+
+				if( json.has("profile") ) {	
+					json = json.getJSONObject("profile");
+					vo.setProfile( jsonValue("profile_image_url", json) );
+				}
+				
+				if( member.member_idCheck(vo.getUserid())==1 ) { //update
+					member.member_myInfo_update(vo);
+				}else { //insert
+					member.member_join(vo);
+				}
+				//소셜로그인되게 세션에 로그인정보를 담는다
+				session.setAttribute("loginInfo", vo);		
+			}	
+		}
+		
+		return "redirect:/";
+	}
+	
 	
 	//네이버로그인처리 요청
 	@RequestMapping("/naverLogin")
