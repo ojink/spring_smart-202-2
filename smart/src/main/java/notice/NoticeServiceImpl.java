@@ -11,8 +11,7 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public int notice_insert(NoticeVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.notice_insert(vo);
 	}
 
 	@Override
@@ -37,8 +36,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int notice_delete(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.notice_delete(id);
 	}
 
 }

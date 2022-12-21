@@ -8,6 +8,6 @@ import lombok.Setter;
 @Getter @Setter
 public class NoticeVO {
 	private int id, readcnt, no;
-	private String title, content, writer, name;
+	private String title, content, writer, name, filename, filepath;
 	private Date writedate;
 }

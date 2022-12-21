@@ -26,14 +26,35 @@ table td { text-align: left; }
 <tr><th>내용</th>
 	<td colspan='5'>${fn: replace(  fn:replace( vo.content, lf, '<br>' )  , crlf, '<br>')}</td>
 </tr>
+<tr><th>첨부파일</th>
+	<td colspan='5'>${vo.filename}
+		<c:if test='${ ! empty vo.filename }'>
+		<a id='download'><i class="font-b fa-solid fa-file-arrow-down"></i></a>
+		</c:if>
+	</td>
+</tr>
 </table>
 <div class='btnSet'>
 	<a class='btn-fill' href='list.no'>공지글목록</a>
 	<!-- 작성자가 로그인한 경우만 수정/삭제 가능 -->
 	<c:if test='${loginInfo.userid eq vo.writer}'>
 	<a class='btn-fill' href='modify.no?id=${vo.id}'>정보수정</a>
-	<a class='btn-fill'>정보삭제</a>
+	<a class='btn-fill btn-delete'>정보삭제</a>
 	</c:if>
 </div>
+<script type="text/javascript">
+$('#download').on('click', function(){
+	$(this).attr('href', 'download.no?id=${vo.id}');
+});
+
+$('.btn-delete').on('click', function(){
+	if( confirm('정말 삭제?') ){
+		location = 'delete.no?id=${vo.id}';
+	}
+});
+</script>
 </body>
 </html>
+
+
+

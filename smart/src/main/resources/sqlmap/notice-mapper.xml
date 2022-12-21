@@ -20,6 +20,18 @@ from notice n left outer join member m on n.writer = m.userid
 where n.id = #{id}
 </select>
 
+<!-- 공지글삭제 -->
+<delete id='delete'>
+delete from notice where id = #{id}
+</delete>
+
+<!-- 공지글신규저장 -->
+<insert id="insert">
+insert into notice(title, content, writer, filename, filepath)
+values (#{title}, #{content}, #{writer}
+		, #{filename, jdbcType=VARCHAR}, #{filepath, jdbcType=VARCHAR})
+</insert>
+
 <!-- 공지글변경저장 -->
 <update id='update'>
 update notice set title = #{title}, content = #{content}
