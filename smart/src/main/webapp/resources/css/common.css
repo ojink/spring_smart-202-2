@@ -18,12 +18,6 @@ table td { padding: 5px 10px;  }
 table th { background-color: #f6f6f6; }
 table a:hover { font-weight: bold; text-decoration: underline; }
 
-textarea { 
-	resize: none;
-	padding: 0 10px;
-	height: 150px;
-}
-
 .font { font-size: 20px; }
 .font-r { font-size: 20px; color:#ff0000 }
 .font-g { font-size: 20px; color:#008000 }
@@ -75,7 +69,14 @@ input[type=radio]{
 	margin: 0 5px 2px;
 	vertical-align: middle;
 }
-input:focus, select:focus { outline: none; border: 1px solid #3367d6; }
+input:focus, select:focus, textarea:focus { outline: none; border: 1px solid #3367d6; }
+
+textarea { 
+	resize: none;
+	padding: 0 10px;
+	height: 150px; font-size: 16px;
+	border: 1px solid #b0b0b0;
+}
 
 label:not(:first-child) { margin-left: 20px; }
 .tb-wrap {

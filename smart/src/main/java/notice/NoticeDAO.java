@@ -29,14 +29,12 @@ public class NoticeDAO implements NoticeService {
 
 	@Override
 	public int notice_read(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sql.update("notice.read", id);
 	}
 
 	@Override
 	public int notice_update(NoticeVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sql.update("notice.update", vo);
 	}
 
 	@Override

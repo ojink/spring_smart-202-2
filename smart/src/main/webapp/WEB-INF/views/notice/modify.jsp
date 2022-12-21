@@ -8,19 +8,29 @@
 </head>
 <body>
 <h3>공지글 수정</h3>
-<form method='post' action=''>
+<form method='post' action='update.no'>
+<input type='hidden' name='id' value='${vo.id}'>
 <table class='w-px1200'>
 <tr><th class='w-px140'>제목</th>
-	<td><input type='text'></td>
+	<td><input type='text' name='title' class='full' value='${vo.title}'></td>
 </tr>
 <tr><th>내용</th>
-	<td><textarea></textarea></td>
+	<td><textarea name='content' class='full'>${vo.content}</textarea></td>
 </tr>
 </table>
 </form>
 <div class='btnSet'>
-	<a class='btn-fill'>저장</a>
-	<a class='btn-empty'>취소</a>
+	<a class='btn-fill save'>저장</a>
+	<a class='btn-empty' href='info.no?id=${vo.id}'>취소</a>
 </div>
+<script>
+$('.save').click(function(){
+	$('form').submit();
+});
+</script>
 </body>
 </html>
+
+
+
+

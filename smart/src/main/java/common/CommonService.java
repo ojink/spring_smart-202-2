@@ -159,11 +159,12 @@ public class CommonService {
 		mail.setDebug(true); // 콘솔에서 메일전송되어지는 과정 확인용
 
 		mail.setHostName("smtp.naver.com"); // 이메일서비스서버지정
-		mail.setAuthentication("it-study", "It-Study1!"); // 관리자 이메일주소, 비번
+		mail.setAuthentication("itstudydev", "Itstudy10102"); // 관리자 이메일주소, 비번
+//		mail.setAuthentication("it-study", "It-Study1!"); // 관리자 이메일주소, 비번
 		mail.setSSLOnConnect(true); // 로그인버튼 클릭
 
 		try {
-			mail.setFrom("it-study@naver.com", "스마트 웹&앱 관리자"); // 메일 전송자이메일
+			mail.setFrom("itstudydev@naver.com", "스마트 웹&앱 관리자"); // 메일 전송자이메일
 			mail.addTo(vo.getEmail(), vo.getName()); // 메일 수신자 지정
 
 			mail.setSubject("스마트 웹&앱 로그인 임시 비밀번호 확인"); // 이메일 제목

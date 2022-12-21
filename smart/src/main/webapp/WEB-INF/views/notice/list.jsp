@@ -16,7 +16,7 @@
 	</c:if>
 </ul>
 </div>
-<table class='w-px1200'>
+<table class='w-px1200 tb-list'>
 <colgroup>
 	<col width='100px'>
 	<col>
@@ -29,8 +29,8 @@
 	<th>작성일자</th>	
 </tr>
 <c:forEach items="${list}" var='vo'>
-<tr><td></td>
-	<td><a href='info.no?id=${vo.id}'>${vo.title}</a></td>
+<tr><td>${vo.no}</td>
+	<td class='text-left'><a href='info.no?id=${vo.id}'>${vo.title}</a></td>
 	<td>${vo.name}</td>
 	<td>${vo.writedate}</td>
 </tr>
