@@ -39,4 +39,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return dao.notice_delete(id);
 	}
 
+	@Override
+	public NoticePageVO notice_list(NoticePageVO page) {
+		return dao.notice_list(page);
+	}
+
 }

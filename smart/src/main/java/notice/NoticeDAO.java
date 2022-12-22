@@ -40,5 +40,13 @@ public class NoticeDAO implements NoticeService {
 	public int notice_delete(int id) {
 		return sql.delete("notice.delete", id);
 	}
+
+	@Override
+	public NoticePageVO notice_list(NoticePageVO page) {
+		page.setTotalList( sql.selectOne("notice.count") ); //글의 총건수 조회
+		//현페이지에 출력할 10건의 공지글 조회
+		page.setList( sql.selectList("notice.list", page) );
+		return page;
+	}
 	
 }

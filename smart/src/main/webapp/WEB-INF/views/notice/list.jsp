@@ -30,7 +30,7 @@
 	<th>작성일자</th>	
 	<th>첨부파일</th>	
 </tr>
-<c:forEach items="${list}" var='vo'>
+<c:forEach items="${page.list}" var='vo'>
 <tr><td>${vo.no}</td>
 	<td class='text-left'><a href='info.no?id=${vo.id}'>${vo.title}</a></td>
 	<td>${vo.name}</td>

@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import common.CommonService;
 import member.MemberServiceImpl;
 import member.MemberVO;
+import notice.NoticePageVO;
 import notice.NoticeService;
 import notice.NoticeVO;
 
@@ -148,7 +149,7 @@ public class NoticeController {
 	
 	//공지글목록화면 요청
 	@RequestMapping("/list.no")
-	public String list(HttpSession session, Model model) {
+	public String list(HttpSession session, Model model, NoticePageVO page) {
 		//테스트를 위한 임시로그인처리 -----------
 		String userid = "admin", userpw = "Manager1";
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -164,7 +165,10 @@ public class NoticeController {
 		//공지글관리 정보를 session에 담는다
 		session.setAttribute("category", "no");
 		//비지니스로직-DB에서 공지글목록을 조회한다. -> 목록화면에 출력하도록 Model에 attribute로 담는다
-		model.addAttribute("list", notice.notice_list() );
+		//model.addAttribute("list", notice.notice_list() );
+		page.setCurPage(1);
+		model.addAttribute("page", notice.notice_list(page) );
+		
 		//응답화면연결
 		return "notice/list";
 	}
