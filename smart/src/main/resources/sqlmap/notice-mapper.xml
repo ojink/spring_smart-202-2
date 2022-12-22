@@ -35,6 +35,8 @@ values (#{title}, #{content}, #{writer}
 <!-- 공지글변경저장 -->
 <update id='update'>
 update notice set title = #{title}, content = #{content}
+				, filename = #{filename, jdbcType=VARCHAR}
+				, filepath = #{filepath, jdbcType=VARCHAR}
 where id = #{id}
 </update>
 </mapper>

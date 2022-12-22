@@ -19,6 +19,7 @@
 </tr>
 <tr><th>첨부파일</th>
 	<td class='text-left'>
+		<div class='align'>
 		<label>
 			<input type='file' name='file' id='attach-file'>
 			<a><i class="font-b fa-solid fa-file-arrow-up"></i></a>
@@ -26,6 +27,7 @@
 		<span id='file-name'></span>
 		<span id='preview'></span>
 		<a id='delete-file'><i class="font-r fa-regular fa-trash-can"></i></a>
+		</div>
 	</td>
 </tr>
 </table>

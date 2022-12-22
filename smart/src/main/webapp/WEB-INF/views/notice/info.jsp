@@ -44,7 +44,7 @@ table td { text-align: left; }
 </div>
 <script type="text/javascript">
 $('#download').on('click', function(){
-	$(this).attr('href', 'download.no?id=${vo.id}');
+	$(this).attr('href', 'download.no?id=${vo.id}&url=' + $(location).attr('href') );
 });
 
 $('.btn-delete').on('click', function(){
