@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<form action="test2" method="get">
+	
+	
+	</form>
+	
+	<form action="test2" method="post">
+	
+	
+	</form>
 </body>
 </html>

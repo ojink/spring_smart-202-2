@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
+
 import member.MemberVO;
 
 
@@ -22,6 +24,15 @@ public class AndMemberController {
 		}else {
 			System.out.println("로그인 실패");
 		}
-		return "요기까지옴";
+		return new Gson().toJson(temp_vo);
 	}
+	//social.me
+	@RequestMapping(value = "/social.me" , produces = "text/html;charset=utf-8")
+	public String andVo(String email) {
+		System.out.println(email);
+		return new Gson().toJson("");
+	}
+	
+	
+	
 }
