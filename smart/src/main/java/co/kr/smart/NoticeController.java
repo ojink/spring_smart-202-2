@@ -29,6 +29,24 @@ public class NoticeController {
 		this.notice = notice; 
 	}
 	
+	//답글저장처리 요청
+	@RequestMapping("/reply_insert.no")
+	public String reply_insert(NoticeVO vo) {
+		//화면에서 입력한 답글정보를 DB에 신규저장한다
+		notice.notice_reply_insert(vo);
+		//응답화면연결
+		return "redirect:list.no";
+	}
+	
+	
+	//답글쓰기화면 요청
+	@RequestMapping("/reply.no")
+	public String reply(int id, Model model) {
+		//해당 원글의 정보를 DB에서 조회해와 답글쓰기화면에 사용할 수 있도록 Model에 담는다
+		model.addAttribute("vo", notice.notice_info(id));
+		return "notice/reply";
+	}
+	
 	//첨부파일 다운로드 요청
 	@ResponseBody @RequestMapping(value="/download.no"
 								, produces="text/html; charset=utf-8")
@@ -166,7 +184,6 @@ public class NoticeController {
 		session.setAttribute("category", "no");
 		//비지니스로직-DB에서 공지글목록을 조회한다. -> 목록화면에 출력하도록 Model에 attribute로 담는다
 		//model.addAttribute("list", notice.notice_list() );
-		page.setCurPage(1);
 		model.addAttribute("page", notice.notice_list(page) );
 		
 		//응답화면연결

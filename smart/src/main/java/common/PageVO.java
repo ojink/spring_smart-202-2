@@ -5,6 +5,8 @@ import lombok.Setter;
 
 @Getter @Setter
 public class PageVO {
+	//검색관련
+	private String search, keyword;
 //	페이지당 보여질 목록 수 : 10
 //	블럭당 보여질 페이지의 수 : 10
 	private int pageList = 10;
@@ -38,7 +40,7 @@ public class PageVO {
 		if( totalPage < endPage ) endPage = totalPage;
 	}
 
-	private int curPage; //현재페이지번호
+	private int curPage = 1; //현재페이지번호
 	private int beginList, endList;
 	
 	private int curBlock, endPage, beginPage;	

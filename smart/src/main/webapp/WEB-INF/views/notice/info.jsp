@@ -41,6 +41,10 @@ table td { text-align: left; }
 	<a class='btn-fill' href='modify.no?id=${vo.id}'>정보수정</a>
 	<a class='btn-fill btn-delete'>정보삭제</a>
 	</c:if>
+	<!-- 로그인한 경우 답글쓰기 가능 -->
+	<c:if test='${ ! empty loginInfo }'>
+	<a class='btn-fill' href='reply.no?id=${vo.id}'>답글쓰기</a>
+	</c:if>
 </div>
 <script type="text/javascript">
 $('#download').on('click', function(){
