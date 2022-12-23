@@ -50,7 +50,7 @@ public class ExamController {
 		vo.setsVal("abc");
 		return new Gson().toJson(vo);
 	}
-	// 현빈 , 주영 , 혜운 <= 3 같은조원분들이 이번주 목요일까지 ArrayList 마스터 시키기. ( 책임자 : 조장 )
+	
 	@RequestMapping(value = "/test5", produces = "text/html;charset=utf-8")
 	public String test5() {
 		ArrayList<VO> list = new ArrayList<ExamController.VO>();
