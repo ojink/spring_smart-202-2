@@ -34,10 +34,13 @@
 </tr>
 </table>
 <input type='hidden' name='filename'>
+<input type='hidden' name='curPage' value='${page.curPage}'>
+<input type='hidden' name='search' value='${page.search }'>
+<input type='hidden' name='keyword' value='${page.keyword }'>
 </form>
 <div class='btnSet'>
 	<a class='btn-fill save'>저장</a>
-	<a class='btn-empty' href='info.no?id=${vo.id}'>취소</a>
+	<a class='btn-empty' href='info.no?id=${vo.id}&curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}'>취소</a>
 </div>
 <script>
 if( isImage('${vo.filename}') ) $('#preview').html( '<img src="${vo.filepath}">' );

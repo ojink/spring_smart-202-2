@@ -34,16 +34,17 @@ table td { text-align: left; }
 	</td>
 </tr>
 </table>
+<c:set var='params' value='curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}'/>
 <div class='btnSet'>
-	<a class='btn-fill' href='list.no'>공지글목록</a>
+	<a class='btn-fill' href='list.no?${params}'>공지글목록</a>
 	<!-- 작성자가 로그인한 경우만 수정/삭제 가능 -->
 	<c:if test='${loginInfo.userid eq vo.writer}'>
-	<a class='btn-fill' href='modify.no?id=${vo.id}'>정보수정</a>
+	<a class='btn-fill' href='modify.no?id=${vo.id}&${params}'>정보수정</a>
 	<a class='btn-fill btn-delete'>정보삭제</a>
 	</c:if>
 	<!-- 로그인한 경우 답글쓰기 가능 -->
 	<c:if test='${ ! empty loginInfo }'>
-	<a class='btn-fill' href='reply.no?id=${vo.id}'>답글쓰기</a>
+	<a class='btn-fill' href='reply.no?id=${vo.id}&${params}'>답글쓰기</a>
 	</c:if>
 </div>
 <script type="text/javascript">
@@ -53,7 +54,7 @@ $('#download').on('click', function(){
 
 $('.btn-delete').on('click', function(){
 	if( confirm('정말 삭제?') ){
-		location = 'delete.no?id=${vo.id}';
+		location = 'delete.no?id=${vo.id}&${params}';
 	}
 });
 </script>

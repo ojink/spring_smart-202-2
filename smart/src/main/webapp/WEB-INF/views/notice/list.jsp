@@ -53,7 +53,7 @@
 	<c:if test='${vo.indent gt 0}'>
 		<i class="font-b fa-regular fa-comment-dots"></i>
 	</c:if>
-		<a href='info.no?id=${vo.id}'>${vo.title}</a>
+		<a href='info.no?id=${vo.id}&curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}'>${vo.title}</a>
 	</td>
 	<td>${vo.name}</td>
 	<td>${vo.writedate}</td>

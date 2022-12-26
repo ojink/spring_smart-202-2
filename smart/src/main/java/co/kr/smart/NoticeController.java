@@ -1,6 +1,7 @@
 package co.kr.smart;
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -74,7 +75,7 @@ public class NoticeController {
 	
 	//공지글삭제처리 요청
 	@RequestMapping("/delete.no")
-	public String delete(int id, HttpServletRequest request) {
+	public String delete(int id, HttpServletRequest request, NoticePageVO page) throws Exception{
 		NoticeVO vo = notice.notice_info(id);
 		//선택한 공지글을 DB에서 삭제한다
 		notice.notice_delete(id);
@@ -82,7 +83,9 @@ public class NoticeController {
 		fileDelete(vo.getFilepath(), request);
 		
 		//응답화면연결 - 목록화면
-		return "redirect:list.no";
+		return "redirect:list.no?curPage="+ page.getCurPage()
+				+ "&search=" + page.getSearch()
+				+ "&keyword=" + URLEncoder.encode(page.getKeyword(), "utf-8");
 	}
 	
 	
@@ -113,7 +116,8 @@ public class NoticeController {
 	
 	//공지글수정저장처리 요청
 	@RequestMapping("/update.no")
-	public String update(NoticeVO vo, MultipartFile file, HttpServletRequest request) {
+	public String update(NoticeVO vo, NoticePageVO page
+						, MultipartFile file, HttpServletRequest request) throws Exception{
 		//수정전 공지글정보를 조회
 		NoticeVO before = notice.notice_info(vo.getId());
 		//파일을 첨부하는 경우: 원래X -> 새로 첨부, 원래O -> 바꿔 첨부
@@ -138,20 +142,23 @@ public class NoticeController {
 		//화면에서 입력한 공지글정보를 DB에 변경저장한다
 		notice.notice_update(vo);
 		//응답화면연결
-		return "redirect:info.no?id=" + vo.getId();
+		return "redirect:info.no?id=" + vo.getId() + "&curPage="+ page.getCurPage()
+				+ "&search=" + page.getSearch() 
+				+ "&keyword=" + URLEncoder.encode(page.getKeyword(), "utf-8");
 	}
 	
 	//공지글수정화면 요청
 	@RequestMapping("/modify.no")
-	public String modify(Model model, int id) {
+	public String modify(Model model, int id, NoticePageVO page) {
 		//DB에서 해당 공지글을 조회한다 ->화면에 출력하도록 Model에 attribute로 담는다
 		model.addAttribute("vo", notice.notice_info(id) );
+		model.addAttribute("page", page);
 		return "notice/modify";
 	}
 	
 	//공지글안내화면 요청
 	@RequestMapping("/info.no")
-	public String info(Model model, int id) {
+	public String info(Model model, int id, NoticePageVO page) {
 		//화면에서 사용할 수 있도록 enter키값을 담아둔다
 		model.addAttribute("crlf", "\r\n");
 		model.addAttribute("lf", "\n");
@@ -159,6 +166,7 @@ public class NoticeController {
 		notice.notice_read(id);
 		//DB에서 해당 공지글을 조회한다 ->화면에 출력하도록 Model에 attribute로 담는다
 		model.addAttribute("vo", notice.notice_info(id) );
+		model.addAttribute("page", page);
 		return "notice/info";
 	}
 	
@@ -169,7 +177,7 @@ public class NoticeController {
 	@RequestMapping("/list.no")
 	public String list(HttpSession session, Model model, NoticePageVO page) {
 		//테스트를 위한 임시로그인처리 -----------
-		String userid = "admin", userpw = "Manager1";
+		String userid = "hong2022", userpw = "Hong2022";
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", userid);
 		//입력한 비번을 salt 를 사용해 암호화한 후 map에 담는다
