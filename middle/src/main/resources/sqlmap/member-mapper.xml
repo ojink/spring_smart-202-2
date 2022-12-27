@@ -7,6 +7,8 @@
 	WHERE EMAIL = #{email}
 	AND pw =  #{pw}
 </select>
-
+<insert id="join">
+	insert into and_member values (#{email}, #{pw}, #{name}, #{gender}, #{file_path,jdbcType=VARCHAR} )
+</insert>
 
 </mapper>
