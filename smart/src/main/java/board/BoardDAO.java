@@ -11,12 +11,17 @@ public class BoardDAO implements BoardService {
 	
 	@Override
 	public int board_insert(BoardVO vo) {
-		return sql.insert("board.insert", vo);
+		int dml = sql.insert("board.insert", vo);
+		//첨부파일이 있는 경우 board_file 테이블에 첨부파일정보도 저장
+		if( vo.getFileList() !=null  ) {
+			sql.insert("board.fileInsert", vo);			
+		}		
+		return dml;
 	}
 
 	@Override
 	public BoardPageVO board_list(BoardPageVO page) {
-		page.setTotalList( sql.selectOne("board.total") );
+		page.setTotalList( sql.selectOne("board.total", page) );
 		page.setList( sql.selectList("board.list", page) );
 		return page;
 	}

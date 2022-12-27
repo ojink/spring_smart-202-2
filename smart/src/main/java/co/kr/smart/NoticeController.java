@@ -178,6 +178,7 @@ public class NoticeController {
 	public String list(HttpSession session, Model model, NoticePageVO page) {
 		//테스트를 위한 임시로그인처리 -----------
 		String userid = "hong2022", userpw = "Hong2022";
+//		String userid = "admin", userpw = "Manager1";
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", userid);
 		//입력한 비번을 salt 를 사용해 암호화한 후 map에 담는다

@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3>공지사항</h3>
-<form method='post'>
+<form method='post' action='list.no'>
 <div id='list-top' class='w-px1200'>
 <ul>
 	<li><select class='w-px100' name='search'>
@@ -46,6 +46,9 @@
 	<th>작성일자</th>	
 	<th>첨부파일</th>	
 </tr>
+<c:if test='${empty page.list}'>
+<tr><td colspan='5'>검색결과가 없습니다</td></tr>
+</c:if>
 <c:forEach items="${page.list}" var='vo'>
 <tr><td>${vo.no}</td>
 	<td class='text-left'>
