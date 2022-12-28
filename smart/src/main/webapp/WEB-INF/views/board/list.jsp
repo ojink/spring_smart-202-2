@@ -41,6 +41,7 @@
 </ul>
 </div>
 <input type='hidden' name='curPage' value='1'>
+<input type='hidden' name='id' >
 </form>
 
 <c:if test='${page.viewType eq "list"}'>
@@ -62,34 +63,52 @@
 <c:forEach items='${page.list}' var='vo'>
 <tr>
 	<td>${vo.no}</td>
-	<td class='text-left'>${vo.title }</td>
+	<td class='text-left'><a onclick="fn_submit( ${vo.id} )">${vo.title }</a>
+		<c:if test='${vo.fileCount gt 0}'><i class="font-b fa-solid fa-paperclip"></i></c:if>
+	</td>
 	<td>${vo.name }</td>
 	<td>${vo.writedate }</td>
 </tr>
 </c:forEach>
 </table>
 </c:if>
+
 <c:if test='${page.viewType eq "grid"}'>
 <ul class='grid w-px1200'>
 	<c:forEach items='${page.list}' var='vo'>
 	<li>
-		<div>${vo.title}</div>
+		<div><a class='title' data-no='${vo.id}'>${vo.title}</a></div>
 		<div>${vo.name}</div>
-		<div>${vo.writedate}</div>
+		<div>${vo.writedate}
+			<c:if test='${vo.fileCount gt 0}'><span style="float:right"><i class="font-b fa-solid fa-paperclip"></i></span></c:if>
+		</div>
 	</li>
 	</c:forEach>
 </ul>
 </c:if>
 
 <script>
+$('.title').on('click', function(){
+	fn_submit( $(this).data('no') );
+});
+
+function fn_submit( id ){
+	$('[name=curPage]').val( ${page.curPage} );
+	$('[name=id]').val( id );
+	$('form').attr('action', 'info.bo');
+	$('form').submit();
+}
+
 $(function(){
 	$('[name=search]').val( '${page.search}' );
 	$('[name=viewType]').val( '${page.viewType}' );
 });
 $('.btn-search').on('click', function(){
+	$('form').attr('action', 'list.bo');
 	$('form').submit();
 });
 $('[name=pageList], [name=viewType]').on('change', function(){
+	$('form').attr('action', 'list.bo');
 	$('form').submit();
 });
 </script>

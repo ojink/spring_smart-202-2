@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
+<!-- 방명록 정보 삭제 -->
+<delete id="delete">
+delete from board where id = #{id}
+</delete>
+
+<!-- 방명록 각 첨부파일정보 조회 -->
+<select id='fileInfo' resultType='board.BoardFileVO'>
+select * from board_file where id = #{id}
+</select>
+
 <!-- 방명록 첨부파일저장 -->
 <insert id="fileInsert">
 	<foreach item="item"  collection="fileList"
@@ -36,6 +46,24 @@ values ( #{title}, #{content}, #{writer} )
 	</choose>
 </sql>
 
+<!-- 선택한 방명록 글의 조회수증가처리 -->
+<update id='read'>
+update board set readcnt = readcnt + 1  where id = #{id}
+</update>
+
+
+<!-- 선택한 방명록 글의 파일정보 조회 -->
+<select id='file' resultType='board.BoardFileVO'>
+select * from board_file where board_id = #{id}
+</select>
+
+<!-- 선택한 방명록 글의 정보 조회 -->
+<select id='info' resultType='board.BoardVO'>
+select b.*, name 
+from board b left outer join member m on b.writer = m.userid 
+where id = #{id}
+</select>
+
 <!-- 방명록 글의 총건수 조회 -->
 <select id='total' resultType='integer'>
 select count(*) from board <include refid="board_where"/>
@@ -43,7 +71,7 @@ select count(*) from board <include refid="board_where"/>
 
 <!-- 선택한 페이지의 글 10건 조회 -->
 <select id='list' resultType='board.BoardVO'>
-select b.* 
+select (select count(*) from board_file f where b.id=f.board_id) fileCount, b.* 
 from ( select row_number() over(order by id) no, name, b.* 
 	   from board b left outer join member m on b.writer = m.userid
 	   <include refid="board_where"/> ) b

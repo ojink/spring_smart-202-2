@@ -80,7 +80,7 @@ public class NoticeController {
 		//선택한 공지글을 DB에서 삭제한다
 		notice.notice_delete(id);
 		//첨부파일이 있었다면 물리적파일도 삭제
-		fileDelete(vo.getFilepath(), request);
+		common.fileDelete(vo.getFilepath(), request);
 		
 		//응답화면연결 - 목록화면
 		return "redirect:list.no?curPage="+ page.getCurPage()
@@ -103,17 +103,7 @@ public class NoticeController {
 		return "redirect:list.no";
 	}
 	
-	private void fileDelete(String filepath, HttpServletRequest request) {
-		if( filepath != null ) {
-			//DB:  http://localhost/smart/upload/myinfo/2022/12/20/afdlj_abc.png
-			//실제: d://app/smart/upload/myinfo/2022/12/20/afdlj_abc.png 	
-			filepath = filepath.replace( common.appURL(request)
-										, "d://app" + request.getContextPath() );			
-			File file = new File( filepath );
-			if( file.exists() ) file.delete();
-		}
-	}
-	
+
 	//공지글수정저장처리 요청
 	@RequestMapping("/update.no")
 	public String update(NoticeVO vo, NoticePageVO page
@@ -125,13 +115,13 @@ public class NoticeController {
 			vo.setFilename( file.getOriginalFilename() );
 			vo.setFilepath( common.fileUpload("notice", file, request) );
 			//수정전 첨부되어 있는 파일이 있으면 물리적 파일도 삭제
-			fileDelete(before.getFilepath(), request);
+			common.fileDelete(before.getFilepath(), request);
 		}else {			
 		//파일을 첨부하지 않는 경우
 		//원래O 그대로 두는 경우(원래X가 포함), 원래O -> 삭제X
 			if( vo.getFilename().isEmpty() ) {
 				//원래O -> 삭제X
-				fileDelete(before.getFilepath(), request);
+				common.fileDelete(before.getFilepath(), request);
 			}else {
 				//원래O 그대로 두는 경우
 				vo.setFilename( before.getFilename() );

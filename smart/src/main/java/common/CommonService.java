@@ -27,7 +27,19 @@ import member.MemberVO;
 
 @Service
 public class CommonService {
-
+	
+	//물리적인 첨부파일 삭제 
+	public void fileDelete(String filepath, HttpServletRequest request) {
+		if( filepath != null ) {
+			//DB:  http://localhost/smart/upload/myinfo/2022/12/20/afdlj_abc.png
+			//실제: d://app/smart/upload/myinfo/2022/12/20/afdlj_abc.png 	
+			filepath = filepath.replace( appURL(request)
+										, "d://app" + request.getContextPath() );			
+			File file = new File( filepath );
+			if( file.exists() ) file.delete();
+		}
+	}
+	
 	//첨부파일 다운로드
 	public boolean fileDownload(String filename, String filepath
 							, HttpServletRequest request
