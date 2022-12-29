@@ -1,5 +1,7 @@
 package board;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -41,8 +43,10 @@ public class BoardDAO implements BoardService {
 
 	@Override
 	public int board_update(BoardVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		if( vo.getFileList()!=null ) {
+			sql.insert("board.fileInsert", vo);
+		}
+		return sql.update("board.update", vo);
 	}
 
 	@Override
@@ -53,6 +57,33 @@ public class BoardDAO implements BoardService {
 	@Override
 	public BoardFileVO board_file_info(int id) {
 		return sql.selectOne("board.fileInfo", id);
+	}
+
+	@Override
+	public int board_file_delete(String removed) {
+		return sql.delete("board.fileDelete", removed);
+	}
+
+	@Override
+	public int board_comment_insert(BoardCommentVO vo) {
+		return sql.insert("board.commentInsert", vo);
+	}
+
+	@Override
+	public List<BoardCommentVO> board_comment_list(int board_id) {
+		return sql.selectList("board.commentList", board_id);
+	}
+
+	@Override
+	public int board_comment_update(BoardCommentVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int board_comment_delete(int id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

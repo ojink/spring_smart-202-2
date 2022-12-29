@@ -74,6 +74,16 @@ a.btn-fill, a.btn-empty {
 	border-radius: 3px;
 }
 
+a.btn-fill-s {
+	display: inline-block;
+/* 	height: 24px; */
+	padding: 1px 7px;
+	border: 1px solid #3367d6;
+	border-radius: 3px;
+	background-color: #3367d6;
+	color: #fff;
+}
+
 a.btn-fill {
 	background-color: #3367d6;
 	color: #fff;
@@ -101,6 +111,7 @@ textarea {
 	padding: 0 10px;
 	height: 150px; font-size: 16px;
 	border: 1px solid #b0b0b0;
+	font-family: sans-serif;
 }
 
 label:not(:first-child) { margin-left: 20px; }

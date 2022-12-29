@@ -10,10 +10,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import board.BoardCommentVO;
 import board.BoardFileVO;
 import board.BoardPageVO;
 import board.BoardServiceImpl;
@@ -27,8 +29,29 @@ public class BoardController {
 	
 	//방명록 수정저장처리 요청
 	@RequestMapping("/update.bo")
-	public String update(BoardPageVO page, BoardVO vo, Model model) {
+	public String update(BoardPageVO page, BoardVO vo, String removed, Model model
+							, MultipartFile[] file
+							, HttpServletRequest request) {
+		//새로 추가선택, 변경선택 한 파일이 있는 경우
+		if( file.length > 1 ) { 
+			attachedFile(vo, file, request);
+		}
 		//화면에서 입력한 정보로 DB에 변경저장한 후
+		if( service.board_update(vo)==1 ) {
+			//삭제할 첨부파일이 있는경우 
+			if( ! removed.isEmpty() ) {
+				//물리적파일 삭제하려면 DB에서 삭제하기 전에 filepath를 조회
+				List<BoardFileVO> files = service.board_info(vo.getId()).getFileList();
+				//DB에서 삭제대상 데이터행을 삭제
+				if( service.board_file_delete(removed) > 0 ) {
+					//물리적인 파일도 삭제
+					for(BoardFileVO f : files) {
+						if( removed.contains(  String.valueOf(f.getId()) ) )
+						common.fileDelete(f.getFilepath(), request);
+					}
+				}
+			}
+		}
 		//응답화면연결
 		model.addAttribute("id", vo.getId());
 		model.addAttribute("url", "info.bo");
@@ -110,6 +133,8 @@ public class BoardController {
 		//선택한 방명록 글의 정보를 DB에서 조회해와 화면에 출력한다
 		model.addAttribute("vo", service.board_info(id) );
 		model.addAttribute("page", vo);
+		model.addAttribute("crlf", "\r\n");
+		model.addAttribute("lf", "\n");
 		return "board/info";
 	}
 	
@@ -127,6 +152,22 @@ public class BoardController {
 		}
 		vo.setFileList(files);
 	}
+	
+	//방명록댓글목록 화면 요청
+	@RequestMapping("/board/comment/list/{id}")
+	public String comment_list(@PathVariable int id, Model model) {
+		//DB에서 댓글목록을 조회해와 목록화면에 출력 -> Model에 담는다
+		model.addAttribute("list", service.board_comment_list(id) );
+		return "board/comment/comment_list";
+	}
+	
+	//방명록 댓글저장처리 요청
+	@ResponseBody @RequestMapping("/board/comment/insert")
+	public boolean comment_regist(BoardCommentVO vo) {
+		//화면에서 입력한 댓글정보를 DB에 저장
+		return service.board_comment_insert(vo)==1 ? true : false;
+	}
+	
 	
 	//방명록 새글저장처리 요청
 	@RequestMapping("/insert.bo")

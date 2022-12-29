@@ -19,6 +19,17 @@
 </tr>
 <tr><th>첨부파일</th>
 	<td>
+	<c:forEach items='${vo.fileList}' var='f'>
+	<div class='align' data-file='${f.id}'>
+		<label>
+			<input type='file' name='file' class='attach-file'>
+			<a><i class="font-b fa-solid fa-file-arrow-up"></i></a>
+		</label>
+		<span class='file-name'>${f.filename}</span>
+		<span class='preview'></span>
+		<a class='delete-file' style='display:inline'><i class="font-r fa-regular fa-trash-can"></i></a>
+	</div>
+	</c:forEach>
 	<div class='align'>
 		<label>
 			<input type='file' name='file' class='attach-file'>
@@ -27,17 +38,17 @@
 		<span class='file-name'></span>
 		<span class='preview'></span>
 		<a class='delete-file'><i class="font-r fa-regular fa-trash-can"></i></a>
-		</div>
+	</div>
 	</td>
 </tr>
 </table>
-<input type='hidden' name='writer' value='${loginInfo.userid}'>
 <input type='hidden' name='curPage' value='${page.curPage}'>
 <input type='hidden' name='search' value='${page.search}'>
 <input type='hidden' name='keyword' value='${page.keyword}'>
 <input type='hidden' name='viewType' value='${page.viewType}'>
 <input type='hidden' name='pageList' value='${page.pageList}'>
 <input type='hidden' name='id' value='${vo.id}'>
+<input type='hidden' name='removed'>
 </form>
 <div class='btnSet'>
 	<a class='btn-fill save'>저장</a>

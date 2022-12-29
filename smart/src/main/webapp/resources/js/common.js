@@ -107,7 +107,9 @@ $(document).on('change', '.attach-file', function(){
 	var attached = this.files[0];
 	var $div = $(this).closest('div');	
 	//파일을 선택한 경우
-	if( attached ){		
+	if( attached ){	
+		removedFile( $div );
+			
 		//선택한 파일이 없는 경우만 기존태그를 복제해서 붙이기
 		if( $div.children('.file-name').text()=='' ) copyFile();
 		
@@ -136,8 +138,40 @@ $(document).on('change', '.attach-file', function(){
 	
 }).on('click', '.delete-file', function(){
 	//선택한 삭제버튼에 해당하는 파일태그삭제
-	$(this).closest('div').remove();
+	//$(this).closest('div').remove();
+	var div = $(this).closest('div');
+	removedFile( div );
+	div.remove();
 }) ;
+
+//삭제한 파일관리
+function removedFile( div ){
+	if( $('[name=removed]').length == 0 ) return; 
+	var removed = $('[name=removed]').val();
+	//hidden 태그에 있는 텍스트를 배열데이터로 만들기
+	if( removed=='' ) removed = []; // [1,2] 
+	else removed = removed.indexOf(',') == -1 ?  [removed] : removed.split(',');
+	
+	if( div.data('file') )   removed.push( String(div.data('file'))  )   //DB에서 삭제해야할 정보
+	
+	removed = new Set(removed); //중복제거
+	$('[name=removed]').val( Array.from( removed ) );
+	console.log( 'removed', removed )
+	console.log( '태그', $('[name=removed]').val() );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
