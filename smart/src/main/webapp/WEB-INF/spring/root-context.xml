@@ -7,6 +7,6 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:component-scan 
-		base-package="member, customer, hr, common, board, notice"/>
+		base-package="member, customer, hr, visual, common, board, notice"/>
 	<import resource="classpath:dbconn/conn.xml"/>
 </beans>

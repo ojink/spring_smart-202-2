@@ -167,7 +167,8 @@ public class NoticeController {
 	@RequestMapping("/list.no")
 	public String list(HttpSession session, Model model, NoticePageVO page) {
 		//테스트를 위한 임시로그인처리 -----------
-		String userid = "hong2022", userpw = "Hong2022";
+		String userid = "sim2022", userpw = "Sim2022";
+//		String userid = "hong2022", userpw = "Hong2022";
 //		String userid = "admin", userpw = "Manager1";
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", userid);

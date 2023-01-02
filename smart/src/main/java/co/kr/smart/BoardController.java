@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -153,11 +154,28 @@ public class BoardController {
 		vo.setFileList(files);
 	}
 	
+	//방명록댓글 삭제처리 요청
+	@ResponseBody @RequestMapping("/board/comment/delete/{id}")
+	public void comment_delete(@PathVariable int id) {
+		//해당 댓글을 DB에서 삭제
+		service.board_comment_delete(id);
+	}
+	
+	//방명록댓글 변경저장처리 요청
+	@ResponseBody @RequestMapping(value="/board/comment/update"
+					, produces="application/text; charset=utf-8")
+	public String comment_update(@RequestBody BoardCommentVO vo ) {
+		//화면에서 변경입력한 정보를 DB에 변경저장처리 성공/실패 문자열을 반환
+		return service.board_comment_update(vo) == 1 ? "성공" : "실패";
+	}
+	
 	//방명록댓글목록 화면 요청
 	@RequestMapping("/board/comment/list/{id}")
 	public String comment_list(@PathVariable int id, Model model) {
 		//DB에서 댓글목록을 조회해와 목록화면에 출력 -> Model에 담는다
 		model.addAttribute("list", service.board_comment_list(id) );
+		model.addAttribute("crlf", "\r\n");
+		model.addAttribute("lf", "\n");
 		return "board/comment/comment_list";
 	}
 	

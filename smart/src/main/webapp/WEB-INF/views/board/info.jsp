@@ -8,11 +8,14 @@
 <title>Insert title here</title>
 <style>
 table td { text-align: left }
-#comment-regist {
+#comment-regist, #comment-list {
 	width: 600px; margin: 0 auto; text-align: left
 }
+#comment-regist textarea, #comment-list textarea { width: calc(100% - 23px); } 
 #comment-regist div { display: flex; justify-content: space-between;}
 #comment { height: 80px;  margin-top: 5px }
+#comment-list span { float: right; }
+.modify { display: none; height: 60px; margin-top: 5px }
 </style>
 </head>
 <body>
@@ -70,6 +73,7 @@ table td { text-align: left }
 	</div>
 	<textarea id='comment' class='full'></textarea>
 </div>
+<div id='comment-list'></div>
 
 <form method='post'>
 <input type='hidden' name='id' value='${vo.id}'>
@@ -100,17 +104,29 @@ $('.btn-regist').on('click', function(){
 				if( response ){
 					alert('댓글이 등록되었습니다');
 					$('#comment').val('');
+					comment_list();
 				}else
 					alert('댓글등록 실패ㅠㅠ');
 			},error: function(req, text){
 				alert(text+':'+req.status)
 			}			
 		});
-		
-		
 	}
-	
 });
+
+comment_list();
+
+function comment_list(){
+	$.ajax({
+		url: 'board/comment/list/${vo.id}',
+		success: function( response ){
+			$('#comment-list').html( response );
+		},error: function(req,text){
+			alert(text+':'+req.status);
+		}
+	});
+}
+
 
 $('.modify').on('click', function(){
 	$('form').attr('action', 'modify.bo').submit();

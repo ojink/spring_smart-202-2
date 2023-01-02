@@ -23,7 +23,7 @@ header div li:not(:first-child) { margin-left: 5px; }
 		<li><a href='list.no' ${category eq 'no' ? 'class="active"' : ''}>공지사항</a></li>
 		<li><a href='list.bo' ${category eq 'bo' ? 'class="active"' : ''}>방명록</a></li>
 		<li><a>공공데이터</a></li>
-		<li><a>시각화</a></li>
+		<li><a href='list.vi' ${cateogry eq 'vi' ? 'class="active"' : ''}>시각화</a></li>
 	</ul>
 </nav>
 <div>
