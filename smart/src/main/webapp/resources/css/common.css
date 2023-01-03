@@ -99,7 +99,7 @@ input {
 	font-size: 16px; 
 	border: 1px solid #b0b0b0;
 }
-input[type=radio]{
+input[type=radio], input[type=checkbox]{
 	width: 18px;
 	margin: 0 5px 2px;
 	vertical-align: middle;
